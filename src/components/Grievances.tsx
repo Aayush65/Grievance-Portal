@@ -29,6 +29,7 @@ const Grievances = () => {
 
     const { setName, setEmpNo, setRegNo, setIsSuperUser } = useContext(context);
 
+    // fetches all the complaints from the server
     useEffect(() => {
         async function fetchData() {
             try {
@@ -62,6 +63,7 @@ const Grievances = () => {
         fetchData();
     }, [changeStatus]);
 
+    // changes status and adds remarks
     useEffect(() => {
         async function sendChangeStatusRequest() {
             try {
@@ -106,6 +108,9 @@ const Grievances = () => {
     }
 
     function addRemarks(_id: string) {
+        if (!newRemark) {
+            return;
+        }
         setBody({ _id, remark: newRemark} as BodyType);
         setChangeStatus(true);
     }
@@ -151,7 +156,7 @@ const Grievances = () => {
                                     <div className="max-w-[67%]">{values.value}</div>
                                 </div>
                             ))}
-                            {complaint.remarks.length ? <div className="w-full flex">
+                            {complaint.remarks ? <div className="w-full flex">
                                 <div className="w-[33%] md:w-[15%] font-bold">Remarks:</div>
                                 <div className="max-w-[67%] flex flex-col">
                                     {complaint.remarks.map((remark, index) => (

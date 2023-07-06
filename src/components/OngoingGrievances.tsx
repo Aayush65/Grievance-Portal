@@ -87,7 +87,7 @@ const OngoingGrievances = () => {
                                     <div className="max-w-[70%]">{values.value}</div>
                                 </div>
                             ))}
-                            {complaint.remarks.length ? <div className="w-full flex">
+                            {complaint.remarks ? <div className="w-full flex">
                                 <div className="w-[33%] md:w-[15%] font-bold">Remarks:</div>
                                 <div className="max-w-[67%] flex flex-col">
                                     {complaint.remarks.map((remark, index) => (
